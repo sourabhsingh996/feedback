@@ -1,0 +1,15 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+df=pd.read_excel('feedback.xlsx')
+df=pd.DataFrame(df)
+r=df[df.columns].sum(axis=1)
+df['sum']=r
+x=df.iloc[:,6]
+miin=x[x==x.min()].index[0]
+maax=x[x==x.max()].index[0]
+labels=np.array(df.iloc[:,0])
+graph=plt.bar(labels,x)
+graph[miin].set_color('r')
+graph[maax].set_color('g')
+plt.xticks(rotation=90)
